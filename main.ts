@@ -73,7 +73,7 @@ namespace robot {
         `;
 
         
-    const robotSprite = sprites.create(robotUp), SpriteKind.player)
+    const robotSprite = sprites.create(robotUp, SpriteKind.player)
     
     //%block
     export function beginScreen() {
