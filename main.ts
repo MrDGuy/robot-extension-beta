@@ -78,7 +78,7 @@ namespace robot {
     //%block
     export function beginScreen() {
         count = 8000
-        grid.place(robot, tiles.getTileLocation(1, 5))
+        grid.place(robotSprite, tiles.getTileLocation(1, 5))
     }
   
     //% block
