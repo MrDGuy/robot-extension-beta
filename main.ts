@@ -74,7 +74,7 @@ namespace robot {
 
         
     const robotSprite = sprites.create(robotUp), SpriteKind.player)
-    tiles.setTilemap(tilemap`level1`)
+    
     //%block
     export function beginScreen() {
         count = 8000
