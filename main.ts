@@ -92,7 +92,7 @@ namespace robot {
         else if (direction == 2){
             return "south";
         }
-        else if (direction == 3){
+        else{
             return "west";
         }
     }
