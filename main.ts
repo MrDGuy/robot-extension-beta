@@ -104,27 +104,27 @@ namespace robot {
         pause(100)
         if (direction == 0) {
             if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), 0, -1))) {
-                game.splash("Robt ran into a wall.")
+                game.splash("Robot ran into a wall.")
             } else {
                 grid.move(robotSprite, 0, -1)
             }
             
         } else if (direction == 1) {
             if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), 1, 0))) {
-                game.splash("Robt ran into a wall.")
+                game.splash("Robot ran into a wall.")
             } else {
                 grid.move(robotSprite, 1, 0)
             }
             
         } else if (direction == 2) {
             if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), 0, 1))) {
-                game.splash("Robt ran into a wall.")
+                game.splash("Robot ran into a wall.")
             } else {
                 grid.move(robotSprite, 0, 1)
             }
             
         } else if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), -1, 0))) {
-                game.splash("Robt ran into a wall.")
+                game.splash("Robot ran into a wall.")
         } else {
             grid.move(robotSprite, -1, 0)
         }
