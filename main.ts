@@ -1,7 +1,7 @@
 namespace robot {
     let count = 0
     let direction = 0
-    let coins = []
+    let coins = []:Sprite = null
     const robotUp = img`
         . . . . . . . . . . . . . . . 
         . . . . . . . a . . . . . . . 
