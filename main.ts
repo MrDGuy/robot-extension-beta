@@ -11,6 +11,7 @@ namespace robot {
                         . f d d d d f . 
                         . . f f f f . .
             `, SpriteKind.Food)]
+    coins.pop()
     const robotUp = img`
         . . . . . . . . . . . . . . . 
         . . . . . . . a . . . . . . . 
@@ -174,15 +175,18 @@ namespace robot {
 
     //%block
     export function takeCoin() {
+        let boolean coinFound = false
        for (let i = 1; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 sprites.destroy(coins[i])
                 delete coins[i]
-            } else {
-                game.splash("No coin present")
-            }
+                coinFound = true
+            } 
         }
-        
+        if(coinFound == false){
+            game.splash("No coin present")
+        }
+
     }
  
     //%block
