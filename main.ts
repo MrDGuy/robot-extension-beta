@@ -162,7 +162,7 @@ namespace robot {
 
     //%block
     export function takeCoin() {
-        if (tiles.locationOfSprite(coin) == tiles.locationOfSprite(robotSprite)) {
+        if (robotSprite.overlapsWith(coin)) {
             sprites.destroy(coin)
         } else {
             game.splash("No coin here.")
