@@ -175,7 +175,7 @@ namespace robot {
 
     //%block
     export function takeCoin() {
-        let boolean coinFound = false
+        let coinFound = false
        for (let i = 1; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 sprites.destroy(coins[i])
