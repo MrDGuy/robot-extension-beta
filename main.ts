@@ -88,8 +88,8 @@ namespace robot {
 
     //%block
     export function coinsPresent(): boolean {
-        for (coinElement in coins){
-            if (robotSprite.overlapsWith(coinElement)) {
+        for (let i = 1; i < coins.length; i++){
+            if (robotSprite.overlapsWith(coins[i])) {
                 return true
             } else {
                 return false
@@ -175,9 +175,10 @@ namespace robot {
 
     //%block
     export function takeCoin() {
-       for (coinElement in coins){
-            if (robotSprite.overlapsWith(coinElement)) {
-                sprites.destroy(coinElement)
+       for (let i = 1; i < coins.length; i++){
+            if (robotSprite.overlapsWith(coins[i])) {
+                sprites.destroy(coins[i])
+                delete coins[i]
             } else {
                 game.splash("No coin present")
             }
