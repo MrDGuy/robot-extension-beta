@@ -80,6 +80,22 @@ namespace robot {
         count = 8000
         grid.place(robotSprite, tiles.getTileLocation(1, tiles.tilemapRows()-2))
     }
+
+    //%block
+    export function direction(): string{
+        if (direction == 0) {
+            return "north";
+        }
+        else if (direction == 1){
+            return "east";
+        }
+        else if (direction == 2){
+            return "south";
+        }
+        else if (direction == 3){
+            return "west";
+        }
+    }
   
     //% block
     export function moveForward() {
