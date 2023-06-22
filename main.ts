@@ -77,7 +77,7 @@ namespace robot {
     let coin : Sprite = null
 
     //%block
-    function coinsPresent(): boolean {
+    export function coinsPresent(): boolean {
         if (robotSprite.overlapsWith(coin)) {
             return true
         } else {
@@ -85,7 +85,7 @@ namespace robot {
         }
     }
     //%block
-    function addCoin(x: number, y: number) {
+    export function addCoin(x: number, y: number) {
     
         if (!tiles.tileIsWall(tiles.getTileLocation(x, y))) {
             coin = sprites.create(img`
