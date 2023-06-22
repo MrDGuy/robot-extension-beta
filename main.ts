@@ -1,6 +1,7 @@
 namespace robot {
     let count = 0
     let direction = 0
+    let coins = []
     const robotUp = img`
         . . . . . . . . . . . . . . . 
         . . . . . . . a . . . . . . . 
@@ -78,10 +79,12 @@ namespace robot {
 
     //%block
     export function coinsPresent(): boolean {
-        if (robotSprite.overlapsWith(coin)) {
-            return true
-        } else {
-            return false
+        for (coin in coins){
+            if (robotSprite.overlapsWith(coin)) {
+                return true
+            } else {
+                return false
+            }
         }
     }
     //%block
@@ -154,6 +157,7 @@ namespace robot {
                             . . . f f f . .
                 `], 100, true)
             tiles.placeOnTile(coin, tiles.getTileLocation(x, y))
+            coins.push(coin)
         } else {
             game.splash("Cannot put coin here")
         }
@@ -162,10 +166,12 @@ namespace robot {
 
     //%block
     export function takeCoin() {
-        if (robotSprite.overlapsWith(coin)) {
-            sprites.destroy(coin)
-        } else {
-            game.splash("No coin here.")
+       for (coin in coins){
+            if (robotSprite.overlapsWith(coin)) {
+                sprites.destroy(coin)
+            } else {
+                game.splash("No coin present")
+            }
         }
         
     }
