@@ -79,8 +79,8 @@ namespace robot {
 
     //%block
     export function coinsPresent(): boolean {
-        for (coin in coins){
-            if (robotSprite.overlapsWith(coin)) {
+        for (coin_element in coins){
+            if (robotSprite.overlapsWith(coin_element)) {
                 return true
             } else {
                 return false
@@ -166,9 +166,9 @@ namespace robot {
 
     //%block
     export function takeCoin() {
-       for (coin in coins){
-            if (robotSprite.overlapsWith(coin)) {
-                sprites.destroy(coin)
+       for (coin_element in coins){
+            if (robotSprite.overlapsWith(coin_element)) {
+                sprites.destroy(coin_element)
             } else {
                 game.splash("No coin present")
             }
