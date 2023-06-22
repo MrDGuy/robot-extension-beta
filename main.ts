@@ -91,10 +91,9 @@ namespace robot {
         for (let i = 1; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 return true
-            } else {
-                return false
             }
         }
+        return false
     }
     //%block
     export function addCoin(x: number, y: number) {
