@@ -179,7 +179,10 @@ namespace robot {
        for (let i = 1; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 sprites.destroy(coins[i])
-                delete coins[i]
+                let temp = coins[i]
+                coins[i] = coins[coins.length-1]
+                coins[length-1]=temp
+                coins.pop()
                 coinFound = true
             } 
         }
