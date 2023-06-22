@@ -159,6 +159,16 @@ namespace robot {
         }
         
     }    
+
+    //%block
+    export function takeCoin() {
+        if (tiles.locationOfSprite(coin) == tiles.locationOfSprite(robotSprite)) {
+            sprites.destroy(coin)
+        } else {
+            game.splash("No coin here.")
+        }
+        
+    }
  
     //%block
     export function beginScreen() {
