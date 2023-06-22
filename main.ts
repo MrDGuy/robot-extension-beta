@@ -181,7 +181,7 @@ namespace robot {
                 sprites.destroy(coins[i])
                 let temp = coins[i]
                 coins[i] = coins[coins.length-1]
-                coins[length-1]=temp
+                coins[coins.length-1]=temp
                 coins.pop()
                 coinFound = true
             } 
