@@ -103,7 +103,8 @@ namespace robot {
         }
         return false
     }
-
+    
+    //%block
     export function detectNumberOfCoins(): number{
         let count = 0
         for (let i = 0; i < coins.length; i++){
@@ -213,6 +214,7 @@ namespace robot {
 
     }
 
+    //%block
     export function collectCoin() {
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
