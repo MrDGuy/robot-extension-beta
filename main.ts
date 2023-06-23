@@ -96,7 +96,7 @@ namespace robot {
 
     //%block
     export function coinsPresent(): boolean {
-        for (let i = 1; i < coins.length; i++){
+        for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 return true
             }
@@ -180,16 +180,12 @@ namespace robot {
             
     }   
 
-    //%block
-    export function setCoin(x: number, y: number, index: number)
-        {
-            tiles.placeOnTile(coins[index], tiles.getTileLocation(x, y))
-        }
+    
 
     //%block
     export function takeCoin() {
         let coinFound = false
-       for (let i = 1; i < coins.length; i++){
+       for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 sprites.destroy(coins[i])
                 let temp = coins[i]
