@@ -93,9 +93,9 @@ namespace robot {
 
         
     const robotSprite = sprites.create(robotUp, SpriteKind.Player)
-
+    scene.cameraFollowSprite(robotSprite)
     //%block
-    export function coinsPresent(): boolean {
+    export function detectCoin(): boolean {
         for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 return true
@@ -103,6 +103,17 @@ namespace robot {
         }
         return false
     }
+
+    export function detectNumberOfCoins(): number{
+        let count = 0
+        for (let i = 0; i < coins.length; i++){
+            if (robotSprite.overlapsWith(coins[i])) {
+                count++
+            }
+        }
+        return count
+    }
+    
     //%block
     export function addCoin(x: number, y: number) {
     
@@ -183,7 +194,7 @@ namespace robot {
     
 
     //%block
-    export function takeCoin() {
+    export function collectAllCoins() {
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
@@ -193,6 +204,7 @@ namespace robot {
                 coins[coins.length-1]=temp
                 coins.pop()
                 coinFound = true
+                i--
             } 
         }
         if(coinFound == false){
@@ -200,6 +212,98 @@ namespace robot {
         }
 
     }
+
+    export function collectCoin() {
+        let coinFound = false
+       for (let i = 0; i < coins.length; i++){
+            if (robotSprite.overlapsWith(coins[i])) {
+                sprites.destroy(coins[i])
+                let temp = coins[i]
+                coins[i] = coins[coins.length-1]
+                coins[coins.length-1]=temp
+                coins.pop()
+                coinFound = true
+                i = coins.length
+            } 
+        }
+        if(coinFound == false){
+            game.splash("No coin present")
+        }
+
+    }
+
+    %//block
+    export function placeCoin()
+        {
+            let coin = sprites.create(img`
+                . . b b b b . . 
+                        . b 5 5 5 5 b . 
+                        b 5 d 3 3 d 5 b 
+                        b 5 3 5 5 1 5 b 
+                        c 5 3 5 5 1 d c 
+                        c d d 1 1 d d c 
+                        . f d d d d f . 
+                        . . f f f f . .
+            `, SpriteKind.Food)
+            animation.runImageAnimation(coin, [img`
+                . . b b b b . . 
+                            . b 5 5 5 5 b . 
+                            b 5 d 3 3 d 5 b 
+                            b 5 3 5 5 1 5 b 
+                            c 5 3 5 5 1 d c 
+                            c d d 1 1 d d c 
+                            . f d d d d f . 
+                            . . f f f f . .
+                `, img`
+                    . . b b b . . . 
+                            . b 5 5 5 b . . 
+                            b 5 d 3 d 5 b . 
+                            b 5 3 5 1 5 b . 
+                            c 5 3 5 1 d c . 
+                            c 5 d 1 d d c . 
+                            . f d d d f . . 
+                            . . f f f . . .
+                `, img`
+                    . . . b b . . . 
+                            . . b 5 5 b . . 
+                            . b 5 d 1 5 b . 
+                            . b 5 3 1 5 b . 
+                            . c 5 3 1 d c . 
+                            . c 5 1 d d c . 
+                            . . f d d f . . 
+                            . . . f f . . .
+                `, img`
+                    . . . b b . . . 
+                            . . b 5 5 b . . 
+                            . . b 1 1 b . . 
+                            . . b 5 5 b . . 
+                            . . b d d b . . 
+                            . . c d d c . . 
+                            . . c 3 3 c . . 
+                            . . . f f . . .
+                `, img`
+                    . . . b b . . . 
+                            . . b 5 5 b . . 
+                            . b 5 1 d 5 b . 
+                            . b 5 1 3 5 b . 
+                            . c d 1 3 5 c . 
+                            . c d d 1 5 c . 
+                            . . f d d f . . 
+                            . . . f f . . .
+                `, img`
+                    . . . b b b . . 
+                            . . b 5 5 5 b . 
+                            . b 5 d 3 d 5 b 
+                            . b 5 1 5 3 5 b 
+                            . c d 1 5 3 5 c 
+                            . c d d 1 d 5 c 
+                            . . f d d d f . 
+                            . . . f f f . .
+                `], 100, true)
+            tiles.placeOnTile(coin, tiles.locationOfSprite(robotSprite))
+            coins.push(coin)
+        }
+            
  
     //%block
     export function beginScreen() {
@@ -416,7 +520,7 @@ namespace robot {
     //%block
     export function goalReached(): boolean {
         if (tiles.tileIs(grid.getLocation(robotSprite), assets.tile`
-            myTile1
+            goalTile
         `)) {
             return true
         } else {
