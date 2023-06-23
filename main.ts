@@ -1,7 +1,7 @@
 namespace robot {
     let count = 0
     let direction = 0
-    const coins = [sprites.create(img`
+    let coins = [sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -107,7 +107,7 @@ namespace robot {
     export function addCoin(x: number, y: number) {
     
         if (!tiles.tileIsWall(tiles.getTileLocation(x, y))) {
-            let coin = sprites.create(img`
+            const coin = sprites.create(img`
                 . . b b b b . . 
                         . b 5 5 5 5 b . 
                         b 5 d 3 3 d 5 b 
