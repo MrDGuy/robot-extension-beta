@@ -107,7 +107,7 @@ namespace robot {
     export function addCoin(x: number, y: number) {
     
         if (!tiles.tileIsWall(tiles.getTileLocation(x, y))) {
-            const coin = sprites.create(img`
+            let coin = sprites.create(img`
                 . . b b b b . . 
                         . b 5 5 5 5 b . 
                         b 5 d 3 3 d 5 b 
@@ -177,8 +177,14 @@ namespace robot {
         } else {
             game.splash("Cannot put coin here")
         }
-        
-    }    
+            
+    }   
+
+    //%block
+    export function setCoin(x: number, y: number, index: number)
+        {
+            tiles.placeOnTile(coins[index], tiles.getTileLocation(x, y))
+        }
 
     //%block
     export function takeCoin() {
