@@ -234,7 +234,7 @@ namespace robot {
 
     }
 
-    %//block
+    //%block
     export function placeCoin()
         {
             let coin = sprites.create(img`
