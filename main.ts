@@ -187,7 +187,7 @@ namespace robot {
             tiles.placeOnTile(coin, tiles.getTileLocation(x, y))
             coins.push(coin)
         } else {
-            game.splash("Cannot put coin here")
+            game.splash("Cannot put coin at x: " + x + " y: " + y)
         }
             
     }   
@@ -210,6 +210,7 @@ namespace robot {
         }
         if(coinFound == false){
             game.splash("No coin present")
+            game.reset()
         }
 
     }
@@ -230,6 +231,7 @@ namespace robot {
         }
         if(coinFound == false){
             game.splash("No coin present")
+            game.reset()
         }
 
     }
@@ -337,6 +339,7 @@ namespace robot {
         if (direction == 0) {
             if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), 0, -1))) {
                 game.splash("Robot ran into a wall.")
+                game.reset()
             } else {
                 grid.move(robotSprite, 0, -1)
             }
@@ -344,6 +347,7 @@ namespace robot {
         } else if (direction == 1) {
             if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), 1, 0))) {
                 game.splash("Robot ran into a wall.")
+                game.reset()
             } else {
                 grid.move(robotSprite, 1, 0)
             }
@@ -351,12 +355,14 @@ namespace robot {
         } else if (direction == 2) {
             if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), 0, 1))) {
                 game.splash("Robot ran into a wall.")
+                game.reset()
             } else {
                 grid.move(robotSprite, 0, 1)
             }
             
         } else if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), -1, 0))) {
                 game.splash("Robot ran into a wall.")
+                game.reset()
         } else {
             grid.move(robotSprite, -1, 0)
         }
