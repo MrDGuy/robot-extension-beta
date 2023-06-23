@@ -187,7 +187,7 @@ namespace robot {
             tiles.placeOnTile(coin, tiles.getTileLocation(x, y))
             coins.push(coin)
         } else {
-            game.splash("Cannot put coin at x: " + x + " y: " + y)
+            game.splash("Cannot put coin at (" + x + "," + y +")")
         }
             
     }   
