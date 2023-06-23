@@ -1,5 +1,5 @@
 {
-    "name": "Robot Extension Test 2",
+    "name": "Robot Extension",
     "description": "",
     "dependencies": {
         "device": "*"
