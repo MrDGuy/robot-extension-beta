@@ -1,7 +1,7 @@
 namespace robot {
     let count = 0
     let direction = 0
-    let coins = [sprites.create(img`
+    const coins = [sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
