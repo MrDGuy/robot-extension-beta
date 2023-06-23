@@ -1,7 +1,7 @@
  
 
 
-> Open this page at [https://mrdguy.github.io/robot-extension-test-2/](https://mrdguy.github.io/robot-extension-test-2/)
+> Open this page at [https://mrdguy.github.io/robot-extension/](https://mrdguy.github.io/robot-extension/)
 
 ## Use as Extension
 
