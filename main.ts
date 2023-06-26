@@ -249,9 +249,8 @@ namespace robot {
     }
 
     //%block
-    export function placeCoin()
+    export function placeCoin(){
         info.setScore(score)
-        {
             let coin = sprites.create(img`
                 . . b b b b . . 
                         . b 5 5 5 5 b . 
