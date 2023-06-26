@@ -320,7 +320,7 @@ namespace robot {
                 coins[i] = coins[coins.length-1]
                 coins[coins.length-1]=temp
                 coins.pop()
-        {
+        }
         for (let j = 0; j < tiles.tilemapRows(); j++){
             for(let k = 0; k < tiles.tilemapColumns(); k++){
                 if (tiles.tileIs(tiles.getTileLocation(j, k), assets.tile`coinTile`)) {
