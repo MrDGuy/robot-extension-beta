@@ -324,8 +324,8 @@ namespace robot {
         }
         for (let j = 0; j < tiles.tilemapRows(); j++){
             for(let k = 0; k < tiles.tilemapColumns(); k++){
-                if (tiles.tileIs(tiles.getTileLocation(j, k), assets.tile`coinTile`)) {
-                    addCoin(j,k)
+                if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`coinTile`)) {
+                    addCoin(k,j)
                 }
             }
         }
