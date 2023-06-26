@@ -314,7 +314,20 @@ namespace robot {
     //%block
     export function beginScreen() {
         count = 8000
-        
+        for (let i = 0; i < coins.length; i++){
+                sprites.destroy(coins[i])
+                let temp = coins[i]
+                coins[i] = coins[coins.length-1]
+                coins[coins.length-1]=temp
+                coins.pop()
+        {
+        for (let j = 0; j < tiles.tilemapRows(); j++){
+            for(let k = 0; k < tiles.tilemapColumns(); k++){
+                if (tiles.tileIs(tiles.getTileLocation(j, k), assets.tile`coinTile`)) {
+                    addCoin(j,k)
+                }
+            }
+        }
         grid.place(robotSprite, tiles.getTileLocation(1, tiles.tilemapRows()-2))
     }
 
