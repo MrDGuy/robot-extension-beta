@@ -1,6 +1,7 @@
 namespace robot {
     let count = 0
     let direction = 0
+    let score = 0
     let coins = [sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -94,7 +95,7 @@ namespace robot {
         
     const robotSprite = sprites.create(robotUp, SpriteKind.Player)
     scene.cameraFollowSprite(robotSprite)
-    info.setScore(0)
+    
     //%block
     export function detectCoin(): boolean {
         for (let i = 0; i < coins.length; i++){
@@ -208,7 +209,8 @@ namespace robot {
                 coins.pop()
                 coinFound = true
                 i--
-                info.changeScoreBy(1)
+                score++
+                info.setScore(score)
             } 
         }
         if(coinFound == false){
@@ -231,7 +233,8 @@ namespace robot {
                 coins.pop()
                 coinFound = true
                 i = coins.length
-                info.changeScoreBy(1)
+                score++
+                info.setScore(score)
             } 
         }
         if(coinFound == false){
