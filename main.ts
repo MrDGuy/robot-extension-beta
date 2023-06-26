@@ -98,6 +98,7 @@ namespace robot {
     
     //%block
     export function detectCoin(): boolean {
+        info.setScore(score)
         for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
                 return true
@@ -108,6 +109,7 @@ namespace robot {
     
     //%block
     export function detectNumberOfCoins(): number{
+        info.setScore(score)
         let count = 0
         for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
@@ -119,7 +121,7 @@ namespace robot {
     
     //%block
     export function addCoin(x: number, y: number) {
-    
+        info.setScore(score)
         if (!tiles.tileIsWall(tiles.getTileLocation(x, y))) {
             let coin = sprites.create(img`
                 . . b b b b . . 
@@ -198,6 +200,7 @@ namespace robot {
 
     //%block
     export function collectAllCoins() {
+        info.setScore(score)
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
@@ -222,6 +225,7 @@ namespace robot {
 
     //%block
     export function collectCoin() {
+        info.setScore(score)
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
@@ -246,6 +250,7 @@ namespace robot {
 
     //%block
     export function placeCoin()
+        info.setScore(score)
         {
             let coin = sprites.create(img`
                 . . b b b b . . 
@@ -319,6 +324,7 @@ namespace robot {
  
     //%block
     export function beginScreen() {
+        info.setScore(score)
         count = 8000
         for (let i = 0; i < coins.length; i++){
                 sprites.destroy(coins[i])
@@ -340,6 +346,7 @@ namespace robot {
 
     //%block
     export function getDirection(): string{
+        info.setScore(score)
         if (direction == 0) {
             return "north";
         }
@@ -356,6 +363,7 @@ namespace robot {
   
     //% block
     export function moveForward() {
+        info.setScore(score)
             
         direction = count % 4
         pause(100)
@@ -394,6 +402,7 @@ namespace robot {
        
         //% block
     export function  turnLeft() {
+        info.setScore(score)
     
         direction = count % 4
         pause(500)
@@ -412,6 +421,7 @@ namespace robot {
     }
     //%block
     export function turnRight() {
+        info.setScore(score)
     
         direction = count % 4
         pause(500)
@@ -431,6 +441,7 @@ namespace robot {
 
     //%block
     export function canMove(inputDir: string): boolean {
+        info.setScore(score)
         if (inputDir == "left") {
             if (direction == 0) {
                 if (tiles.tileIsWall(grid.add(grid.getLocation(robotSprite), -1, 0))) {
@@ -550,6 +561,7 @@ namespace robot {
     }
     //%block
     export function goalReached(): boolean {
+        info.setScore(score)
         if (tiles.tileIs(grid.getLocation(robotSprite), assets.tile`
             goalTile
         `)) {
