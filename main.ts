@@ -199,6 +199,7 @@ namespace robot {
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
+                music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
                 sprites.destroy(coins[i])
                 let temp = coins[i]
                 coins[i] = coins[coins.length-1]
@@ -220,6 +221,7 @@ namespace robot {
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
+                music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.UntilDone)
                 sprites.destroy(coins[i])
                 let temp = coins[i]
                 coins[i] = coins[coins.length-1]
@@ -312,6 +314,7 @@ namespace robot {
     //%block
     export function beginScreen() {
         count = 8000
+        
         grid.place(robotSprite, tiles.getTileLocation(1, tiles.tilemapRows()-2))
     }
 
