@@ -23,7 +23,7 @@ namespace robot {
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Food)]
     coins.pop()
-    const robotUp = img`
+    let robotUp = img`
         . . . . . . . . . . . . . . . 
         . . . . . . . a . . . . . . . 
         . . . . . . . a . . . . . . . 
@@ -40,7 +40,7 @@ namespace robot {
         . a a a a a a a a a a a a a . 
         . . . . . . . . . . . . . . . 
         `;
-  const robotLeft = img`
+  let robotLeft = img`
         . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . a . . 
         . . . . . . . . . . a a a . . 
@@ -58,7 +58,7 @@ namespace robot {
         . . . . . . . . . . . . . . . 
         `;
 
-  const robotDown = img`
+  let robotDown = img`
         . . . . . . . . . . . . . . . 
         . a a a a a a a a a a a a a . 
         . . a a a a a a a a a a a . . 
@@ -76,7 +76,7 @@ namespace robot {
         . . . . . . . . . . . . . . . 
         `;
 
-  const robotRight = img`
+  let robotRight = img`
         . . . . . . . . . . . . . . . 
         . a a . . . . . . . . . . . . 
         . a a a a . . . . . . . . . . 
@@ -95,7 +95,7 @@ namespace robot {
         `;
 
         
-    const robotSprite = sprites.create(robotUp, SpriteKind.Player)
+    let robotSprite = sprites.create(robotUp, SpriteKind.Player)
     scene.cameraFollowSprite(robotSprite)
     
     //%block
@@ -324,7 +324,7 @@ namespace robot {
             
  
     //%block
-    export function beginScreen() {
+    export function beginScreen(startTile: Image, coinTile: Image) {
         info.setScore(score)
         count = 8000
         for (let i = 0; i < coins.length; i++){
@@ -337,12 +337,23 @@ namespace robot {
         }
         for (let j = 0; j < tiles.tilemapRows(); j++){
             for(let k = 0; k < tiles.tilemapColumns(); k++){
-                if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`coinTile`)) {
+                if (tiles.tileIs(tiles.getTileLocation(k, j), coinTile)) {
                     addCoin(k,j)
+                }
+                if (tiles.tileIs(tiles.getTileLocation(k, j), startTile)) {
+                    grid.place(robotSprite, tiles.getTileLocation(k, j))
                 }
             }
         }
-        grid.place(robotSprite, tiles.getTileLocation(1, tiles.tilemapRows()-2))
+        
+    }
+
+    //%block
+    export function changeRobot(up: Image, down: Image, left: Image, right: Image){
+        robotUp = up
+        robotDown = down
+        robotLeft = left
+        robotRight = right
     }
 
     //%block
@@ -561,11 +572,9 @@ namespace robot {
         
     }
     //%block
-    export function goalReached(): boolean {
+    export function goalReached(goalTile: Image): boolean {
         info.setScore(score)
-        if (tiles.tileIs(grid.getLocation(robotSprite), assets.tile`
-            goalTile
-        `)) {
+        if (tiles.tileIs(grid.getLocation(robotSprite), goalTile)) {
             return true
         } else {
             return false
