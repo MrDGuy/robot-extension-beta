@@ -1,3 +1,5 @@
+//% color="#6d5ba5"
+
 namespace robot {
     let count = 0
     let direction = 0
