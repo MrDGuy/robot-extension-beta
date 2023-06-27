@@ -1,4 +1,4 @@
-//% color="#6d5ba5"
+//% color="#6d5ba5" icon="\f544"
 
 namespace robot {
     let count = 0
