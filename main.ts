@@ -324,7 +324,7 @@ namespace robot {
             
  
     //%block
-    export function beginScreen(startTile: Image, coinTile: Image) {
+    export function beginScreen() {
         info.setScore(score)
         count = 8000
         for (let i = 0; i < coins.length; i++){
