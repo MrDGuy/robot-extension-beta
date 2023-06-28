@@ -337,10 +337,10 @@ namespace robot {
         }
         for (let j = 0; j < tiles.tilemapRows(); j++){
             for(let k = 0; k < tiles.tilemapColumns(); k++){
-                if (tiles.tileIs(tiles.getTileLocation(k, j), coinTile)) {
+                if (tiles.tileIs(tiles.getTileLocation(k, j), asssets.tile`coinTile`)) {
                     addCoin(k,j)
                 }
-                if (tiles.tileIs(tiles.getTileLocation(k, j), startTile)) {
+                if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`startTile`)) {
                     grid.place(robotSprite, tiles.getTileLocation(k, j))
                 }
             }
@@ -572,9 +572,9 @@ namespace robot {
         
     }
     //%block
-    export function goalReached(goalTile: Image): boolean {
+    export function goalReached(): boolean {
         info.setScore(score)
-        if (tiles.tileIs(grid.getLocation(robotSprite), goalTile)) {
+        if (tiles.tileIs(grid.getLocation(robotSprite), assets.tile`goalTile`)) {
             return true
         } else {
             return false
