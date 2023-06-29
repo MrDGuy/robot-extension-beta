@@ -1,6 +1,6 @@
 {
     "name": "Robot Extension",
-    "version": "0.0.1"
+    "version": "0.0.1",
     "description": "A robot that uses a tilemap to move and collect coins",
     "dependencies": {
         "device": "*"
