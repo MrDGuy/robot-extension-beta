@@ -120,9 +120,8 @@ namespace robot {
         }
         return count
     }
-    /*
-    //%block
-    export function addCoin(x: number, y: number) {
+    
+    function addCoin(x: number, y: number) {
         info.setScore(score)
         if (!tiles.tileIsWall(tiles.getTileLocation(x, y))) {
             let coin = sprites.create(img`
@@ -197,7 +196,7 @@ namespace robot {
         }
             
     }   
-    */
+    
 
     
 
