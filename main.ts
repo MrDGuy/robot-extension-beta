@@ -120,7 +120,7 @@ namespace robot {
         }
         return count
     }
-    
+    /*
     //%block
     export function addCoin(x: number, y: number) {
         info.setScore(score)
@@ -197,6 +197,7 @@ namespace robot {
         }
             
     }   
+    */
 
     
 
