@@ -344,7 +344,7 @@ namespace robot {
                     grid.place(robotSprite, tiles.getTileLocation(k, j))
                     while(true)
                         {
-                            if((robot.getDirection() === "north")
+                            if((robot.getDirection() === "north"))
                                {
                                 break
                                 }
