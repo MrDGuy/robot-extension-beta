@@ -342,6 +342,10 @@ namespace robot {
                 }
                 if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`startTile`)) {
                     grid.place(robotSprite, tiles.getTileLocation(k, j))
+                    while(robot.getDirection != "north")
+                        {
+                            robot.turnRight()
+                        }
                 }
             }
         }
