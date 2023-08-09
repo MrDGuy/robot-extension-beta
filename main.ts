@@ -346,6 +346,7 @@ namespace robot {
                         {
                             if((robot.getDirection() === "north"))
                                {
+                                robotSprite.setImage(robotUp)
                                 break
                                 }
                             robot.turnRight()
