@@ -327,6 +327,7 @@ namespace robot {
     export function beginScreen() {
         info.setScore(score)
         count = 8000
+        robotSprite.setImage(robotUp)
         for (let i = 0; i < coins.length; i++){
                 sprites.destroy(coins[i])
                 let temp = coins[i]
@@ -342,15 +343,6 @@ namespace robot {
                 }
                 if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`startTile`)) {
                     grid.place(robotSprite, tiles.getTileLocation(k, j))
-                    while(true)
-                        {
-                            if((robot.getDirection() === "north"))
-                               {
-                                robotSprite.setImage(robotUp)
-                                break
-                                }
-                            robot.turnRight()
-                        }
                 }
             }
         }
