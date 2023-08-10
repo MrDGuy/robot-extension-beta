@@ -327,6 +327,7 @@ namespace robot {
     export function beginScreen() {
         info.setScore(score)
         count = 8000
+        direction = count % 4 
         robotSprite.setImage(robotUp)
         for (let i = 0; i < coins.length; i++){
                 sprites.destroy(coins[i])
