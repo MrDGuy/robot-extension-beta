@@ -118,17 +118,17 @@ namespace robot {
         })
         controller.down.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
             robotSprite.setImage(robotDOWN)
-            if !(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Bottom)))
+            if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Bottom))))
                 grid.move(robotSprite, 0, 1)
         })
         controller.left.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
             robotSprite.setImage(robotLEFT)
-            if !(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Left)))
+            if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Left))))
                 grid.move(robotSprite, -1, 0)
         })
         controller.right.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
             robotSprite.setImage(robotRIGHT)
-            if !(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Right)))
+            if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Right))))
                 grid.move(robotSprite, 1, 0)
         })
     }
