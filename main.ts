@@ -111,7 +111,7 @@ namespace robot {
 
     //%block
     export function moveRobotWithButtons() {
-        gride.moveWithButtons(robotSprite)
+        grid.moveWithButtons(robotSprite)
     }
     
     //%block
