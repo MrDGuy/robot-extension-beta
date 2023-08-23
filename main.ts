@@ -108,6 +108,11 @@ namespace robot {
         }
         return false
     }
+
+    //%block
+    export function moveRobotWithButtons() {
+        gride.moveWithButtons(robotSprite)
+    }
     
     //%block
     export function detectNumberOfCoins(): number{
