@@ -353,6 +353,11 @@ namespace robot {
         count = 8000
         direction = count % 4 
         robotSprite.setImage(robotUp)
+        // Check for missing tilemap
+        if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
+            game.splash("No tilemap found in the project.\nPlease create one in the Assets.")
+            return
+        }
         for (let i = 0; i < coins.length; i++){
                 sprites.destroy(coins[i])
                 let temp = coins[i]
