@@ -361,6 +361,21 @@ namespace robot {
                 coins.pop()
                 i--
         }
+
+        let coinTile: Image = null
+        let startTile: Image = null
+    
+        try {
+            coinTile = assets.tile`coinTile`
+        } catch (e) {
+            game.splash("Missing tile asset: coinTile")
+        }
+    
+        try {
+            startTile = assets.tile`startTile`
+        } catch (e) {
+            game.splash("Missing tile asset: startTile")
+        }
         for (let j = 0; j < tiles.tilemapRows(); j++){
             for(let k = 0; k < tiles.tilemapColumns(); k++){
                 if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`coinTile`)) {
@@ -599,13 +614,12 @@ namespace robot {
     }
     //%block
     export function goalReached(): boolean {
-        info.setScore(score)
-        if (tiles.tileIs(grid.getLocation(robotSprite), assets.tile`goalTile`)) {
-            return true
-        } else {
+        try {
+            return tiles.tileIs(grid.getLocation(robotSprite), assets.tile`goalTile`)
+        } catch (e) {
+            game.splash("Missing tile asset: goalTile")
             return false
         }
-    
     }
     
     
