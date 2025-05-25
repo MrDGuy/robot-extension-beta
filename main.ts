@@ -115,7 +115,7 @@ namespace robot {
                 }
             }
         }
-        game.showLongText(`⚠️ Tile "${tileName}" is missing from the current tilemap.`, DialogLayout.Full)
+        game.showLongText(`⚠️ Tile "${tileName}" is missing from the current tilemap.`, DialogLayout.Center)
         return false
     }
     
@@ -392,7 +392,7 @@ namespace robot {
     
         // Check tilemap loaded
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
-            game.showLongText("⚠️ No tilemap found. Please add a tilemap to Assets.", DialogLayout.Full)
+            game.showLongText("⚠️ No tilemap found. Please add a tilemap to Assets.", DialogLayout.Center)
             return
         }
     
