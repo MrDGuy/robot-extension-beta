@@ -4,6 +4,7 @@ namespace robot {
     let count = 0
     let direction = 0
     let score = 0
+    let hasBegun = false
     let coins = [sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -97,9 +98,17 @@ namespace robot {
         
     let robotSprite = sprites.create(robotUp, SpriteKind.Player)
     scene.cameraFollowSprite(robotSprite)
+
+    function checkInit() {
+        if (!hasBegun) {
+            game.showLongText("You must call 'robot.begin screen()' at the start of your program.", DialogLayout.Full)
+            game.reset()
+        }
+    }
     
     //%block
     export function detectCoin(): boolean {
+        checkInit()
         info.setScore(score)
         for (let i = 0; i < coins.length; i++){
             if (robotSprite.overlapsWith(coins[i])) {
@@ -111,6 +120,7 @@ namespace robot {
 
     //%block
     export function moveRobotWithButtons() {
+        checkInit()
         controller.up.onEvent(ControllerButtonEvent.Pressed, function on_event_pressed() {
             robotSprite.setImage(robotUp)
             if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(robotSprite), CollisionDirection.Top))))
@@ -135,6 +145,7 @@ namespace robot {
     
     //%block
     export function detectNumberOfCoins(): number{
+        checkInit()
         info.setScore(score)
         let count = 0
         for (let i = 0; i < coins.length; i++){
@@ -146,6 +157,7 @@ namespace robot {
     }
     
     function addCoin(x: number, y: number) {
+        checkInit()
         info.setScore(score)
         if (!tiles.tileIsWall(tiles.getTileLocation(x, y))) {
             let coin = sprites.create(img`
@@ -226,6 +238,7 @@ namespace robot {
 
     //%block
     export function collectAllCoins() {
+        checkInit()
         info.setScore(score)
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
@@ -251,6 +264,7 @@ namespace robot {
 
     //%block
     export function collectCoin() {
+        checkInit()
         info.setScore(score)
         let coinFound = false
        for (let i = 0; i < coins.length; i++){
@@ -276,6 +290,7 @@ namespace robot {
 
     //%block
     export function placeCoin(){
+        checkInit()
         info.setScore(score)
             let coin = sprites.create(img`
                 . . b b b b . . 
@@ -349,13 +364,14 @@ namespace robot {
  
     //%block
     export function beginScreen() {
+        hasBegun = true
         info.setScore(score)
         count = 8000
         direction = count % 4 
         robotSprite.setImage(robotUp)
         // Check for missing tilemap
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
-            game.splash("No tilemap found in the project.\nPlease create one in the Assets.")
+            game.splash("No tilemap found in the project. Please create one in the Assets.")
             return
         }
         for (let i = 0; i < coins.length; i++){
@@ -421,6 +437,7 @@ namespace robot {
   
     //% block
     export function moveForward() {
+        checkInit()
         info.setScore(score)
             
         direction = count % 4
@@ -460,6 +477,7 @@ namespace robot {
        
         //% block
     export function  turnLeft() {
+        checkInit()
         info.setScore(score)
     
         direction = count % 4
@@ -479,6 +497,7 @@ namespace robot {
     }
     //%block
     export function turnRight() {
+        checkInit()
         info.setScore(score)
     
         direction = count % 4
@@ -499,6 +518,7 @@ namespace robot {
 
     //%block
     export function canMove(inputDir: string): boolean {
+        checkInit()
         info.setScore(score)
         if (inputDir == "left") {
             if (direction == 0) {
@@ -619,13 +639,22 @@ namespace robot {
     }
     //%block
     export function goalReached(): boolean {
+        checkInit()
         try {
             return tiles.tileIs(grid.getLocation(robotSprite), assets.tile`goalTile`)
         } catch (e) {
-            game.splash("Missing tile asset: goalTile")
+            game.showLongText("Missing tile asset: goalTile", DialogLayout.Full)
             return false
         }
     }
+    
+
+    control.runInParallel(function () {
+        pause(1000)
+        if (tiles.tilemapRows() === 0 && !hasBegun) {
+            game.showLongText("Project includes 'robot' extension but is missing 'robot.begin screen()'", DialogLayout.Full)
+        }
+    })
     
     
 }
