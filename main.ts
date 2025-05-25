@@ -397,7 +397,7 @@ namespace robot {
         }
     
         // Check that required tiles are used in the tilemap
-        //const coinTile = assets.tile`coinTile`
+        const coinTile = assets.tile`coinTile`
         const startTile = assets.tile`startTile`
         const goalTile = assets.tile`goalTile`
     
