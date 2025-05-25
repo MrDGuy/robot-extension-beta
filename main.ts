@@ -371,7 +371,7 @@ namespace robot {
         robotSprite.setImage(robotUp)
         // Check for missing tilemap
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
-            game.splash("No tilemap found in the project. Please create one in the Assets.")
+            game.showLongText("No tilemap found in the project. Please create one in the Assets.", DialogLayout.Full)
             return
         }
         for (let i = 0; i < coins.length; i++){
@@ -389,13 +389,13 @@ namespace robot {
         try {
             coinTile = assets.tile`coinTile`
         } catch (e) {
-            game.splash("Missing tile asset: coinTile")
+            game.showLongText("Missing tile asset: coinTile", DialogLayout.Full)
         }
     
         try {
             startTile = assets.tile`startTile`
         } catch (e) {
-            game.splash("Missing tile asset: startTile")
+            game.showLongText("Missing tile asset: startTile", DialogLayout.Full)
         }
         for (let j = 0; j < tiles.tilemapRows(); j++){
             for(let k = 0; k < tiles.tilemapColumns(); k++){
