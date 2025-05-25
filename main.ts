@@ -382,45 +382,44 @@ namespace robot {
         count = 8000
         direction = count % 4 
         robotSprite.setImage(robotUp)
-        // Check for missing tilemap
+    
+        // Clear old coins
+        for (let i = 0; i < coins.length; i++) {
+            sprites.destroy(coins[i])
+            coins.pop()
+            i--
+        }
+    
+        // Check tilemap loaded
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
-            game.showLongText("No tilemap found in the project. Please create one in the Assets and load it using the 'set current tilemap' block", DialogLayout.Full)
+            game.showLongText("⚠️ No tilemap found. Please add a tilemap to Assets.", DialogLayout.Full)
             return
         }
-        for (let i = 0; i < coins.length; i++){
-                sprites.destroy(coins[i])
-                let temp = coins[i]
-                coins[i] = coins[coins.length-1]
-                coins[coins.length-1]=temp
-                coins.pop()
-                i--
-        }
-
-        let coinTile: Image = null
-        let startTile: Image = null
     
-        try {
-            coinTile = assets.tile`coinTile`
-        } catch (e) {
-            game.showLongText("Missing tile asset: coinTile", DialogLayout.Full)
-        }
+        // Check that required tiles are used in the tilemap
+        const coinTile = assets.tile`coinTile`
+        const startTile = assets.tile`startTile`
+        const goalTile = assets.tile`goalTile`
     
-        try {
-            startTile = assets.tile`startTile`
-        } catch (e) {
-            game.showLongText("Missing tile asset: startTile", DialogLayout.Full)
-        }
-        for (let j = 0; j < tiles.tilemapRows(); j++){
-            for(let k = 0; k < tiles.tilemapColumns(); k++){
-                if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`coinTile`)) {
-                    addCoin(k,j)
+        let startFound = checkForTilePresence(startTile, "startTile")
+        let coinFound = checkForTilePresence(coinTile, "coinTile")
+        let goalFound = checkForTilePresence(goalTile, "goalTile")
+    
+        // Optional: skip rest if critical tiles are missing
+        if (!startFound) return
+    
+        // Place robot and coins
+        for (let j = 0; j < tiles.tilemapRows(); j++) {
+            for (let k = 0; k < tiles.tilemapColumns(); k++) {
+                let loc = tiles.getTileLocation(k, j)
+                if (tiles.tileIs(loc, coinTile)) {
+                    addCoin(k, j)
                 }
-                if (tiles.tileIs(tiles.getTileLocation(k, j), assets.tile`startTile`)) {
-                    grid.place(robotSprite, tiles.getTileLocation(k, j))
+                if (tiles.tileIs(loc, startTile)) {
+                    grid.place(robotSprite, loc)
                 }
             }
         }
-        
     }
 
     //%block
