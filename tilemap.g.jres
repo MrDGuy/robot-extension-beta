@@ -16,5 +16,10 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
         "displayName": "coinTile"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myTiles"
     }
 }
