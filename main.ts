@@ -406,7 +406,7 @@ namespace robot {
         let goalFound = checkForTilePresence(goalTile, "goalTile")
     
         // Optional: skip rest if critical tiles are missing
-        if (!startFound || !goalFound) return
+        if (!startFound || !goalFound) game.reset()
     
         // Place robot and coins
         for (let j = 0; j < tiles.tilemapRows(); j++) {
