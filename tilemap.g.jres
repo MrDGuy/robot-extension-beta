@@ -1,0 +1,20 @@
+{
+  "startTile": {
+    "id": "startTile",
+    "data": "00000000000000000000000000000000",
+    "mimeType": "image/x-mkcd-f4",
+    "tilemapTile": true
+  },
+  "goalTile": {
+    "id": "goalTile",
+    "data": "11111111111111111111111111111111",
+    "mimeType": "image/x-mkcd-f4",
+    "tilemapTile": true
+  },
+  "coinTile": {
+    "id": "coinTile",
+    "data": "22222222222222222222222222222222",
+    "mimeType": "image/x-mkcd-f4",
+    "tilemapTile": true
+  }
+}
