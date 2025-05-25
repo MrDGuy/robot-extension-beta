@@ -105,6 +105,19 @@ namespace robot {
             game.reset()
         }
     }
+
+    function checkForTilePresence(requiredTile: Image, tileName: string) {
+        for (let y = 0; y < tiles.tilemapRows(); y++) {
+            for (let x = 0; x < tiles.tilemapColumns(); x++) {
+                let loc = tiles.getTileLocation(x, y)
+                if (tiles.tileIs(loc, requiredTile)) {
+                    return true
+                }
+            }
+        }
+        game.showLongText(`⚠️ Tile "${tileName}" is missing from the current tilemap.`, DialogLayout.Full)
+        return false
+    }
     
     //%block
     export function detectCoin(): boolean {
