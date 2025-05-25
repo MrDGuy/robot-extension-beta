@@ -371,7 +371,7 @@ namespace robot {
         robotSprite.setImage(robotUp)
         // Check for missing tilemap
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
-            game.showLongText("No tilemap found in the project. Please create one in the Assets.", DialogLayout.Full)
+            game.showLongText("No tilemap found in the project. Please create one in the Assets and load it using the 'set current tilemap' block", DialogLayout.Full)
             return
         }
         for (let i = 0; i < coins.length; i++){
