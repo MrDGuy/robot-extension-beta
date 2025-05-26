@@ -663,7 +663,7 @@ namespace robot {
 
     control.runInParallel(function () {
         pause(1000)
-        if (tiles.tilemapRows() === 0 && !hasBegun) {
+        if (!hasBegun) {
             game.showLongText("Project includes 'robot' extension but is missing 'robot.begin screen()'", DialogLayout.Full)
         }
     })
