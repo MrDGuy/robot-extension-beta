@@ -408,13 +408,6 @@ namespace robot {
             game.reset()
         }
         console.log("Found tilemap in assets")
-    
-        // Check that required tiles are used in the tilemap
-        if(assets.tile`coinTile`){
-            const coinTile = assets.tile`coinTile`
-            let coinFound = checkForTilePresence(coinTile, "coinTile")
-            console.log("Coin tile found")
-        }
         
         const startTile = assets.tile`startTile`
         const goalTile = assets.tile`goalTile`
@@ -438,7 +431,11 @@ namespace robot {
         }
 
         // Place coins only if the assets and tilemap have a coin
-        if(coinFound){
+                // Check that required tiles are used in the tilemap
+        if(assets.tile`coinTile`){
+            const coinTile = assets.tile`coinTile`
+            let coinFound = checkForTilePresence(coinTile, "coinTile")
+            console.log("Coin tile found")
             for (let j = 0; j < tiles.tilemapRows(); j++) {
                 for (let k = 0; k < tiles.tilemapColumns(); k++) {
                     let loc = tiles.getTileLocation(k, j)
