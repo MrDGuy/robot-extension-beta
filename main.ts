@@ -432,6 +432,7 @@ namespace robot {
                 
                 if (tiles.tileIs(loc, startTile)) {
                     grid.place(robotSprite, loc)
+                    console.log("Placed robot")
                 }
             }
         }
@@ -444,6 +445,7 @@ namespace robot {
                     
                     if (tiles.tileIs(loc, coinTile)) {
                         addCoin(k, j)
+                        console.log("Placed coin")
                     }
                 }
             }
