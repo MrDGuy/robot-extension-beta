@@ -389,12 +389,25 @@ namespace robot {
             coins.pop()
             i--
         }
-    
+        console.log("Cleared the coins")
+
+        if (!assets.tile`startTile`) {
+            game.showLongText("⚠️ Missing required tile asset: startTile", DialogLayout.Full)
+            game.reset()
+        }
+        console.log("Found startTile in assets")
+        if (!assets.tile`goalTile`) {
+            game.showLongText("⚠️ Missing required tile asset: goalTile", DialogLayout.Full)
+            game.reset()
+        }
+        console.log("Found goalTile in assets")
+            
         // Check tilemap loaded
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
             game.showLongText("⚠️ No tilemap found. Please add a tilemap to Assets.", DialogLayout.Full)
-            return
+            game.reset()
         }
+        console.log("Found tilemap in assets")
     
         // Check that required tiles are used in the tilemap
         const coinTile = assets.tile`coinTile`
@@ -404,10 +417,10 @@ namespace robot {
         let startFound = checkForTilePresence(startTile, "startTile")
         //let coinFound = checkForTilePresence(coinTile, "coinTile")
         let goalFound = checkForTilePresence(goalTile, "goalTile")
-    
+
         // Optional: skip rest if critical tiles are missing
         if (!startFound || !goalFound) game.reset()
-    
+        console.log("Found startTile and goalTile in tilemap")
         // Place robot and coins
         for (let j = 0; j < tiles.tilemapRows(); j++) {
             for (let k = 0; k < tiles.tilemapColumns(); k++) {
