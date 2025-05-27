@@ -389,25 +389,21 @@ namespace robot {
             coins.pop()
             i--
         }
-        console.log("Cleared the coins")
 
         if (!assets.tile`startTile`) {
             game.showLongText("⚠️ Missing required tile asset: startTile", DialogLayout.Full)
             game.reset()
         }
-        console.log("Found startTile in assets")
         if (!assets.tile`goalTile`) {
             game.showLongText("⚠️ Missing required tile asset: goalTile", DialogLayout.Full)
             game.reset()
         }
-        console.log("Found goalTile in assets")
             
         // Check tilemap loaded
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
             game.showLongText("⚠️ No tilemap found. Please set a current tilemap.", DialogLayout.Full)
             game.reset()
         }
-        console.log("Found tilemap in assets")
         
         const startTile = assets.tile`startTile`
         const goalTile = assets.tile`goalTile`
@@ -417,7 +413,6 @@ namespace robot {
 
         // Optional: skip rest if critical tiles are missing
         if (!startFound || !goalFound) game.reset()
-        console.log("Found startTile and goalTile in tilemap")
         // Place robot
         for (let j = 0; j < tiles.tilemapRows(); j++) {
             for (let k = 0; k < tiles.tilemapColumns(); k++) {
@@ -425,7 +420,6 @@ namespace robot {
                 
                 if (tiles.tileIs(loc, startTile)) {
                     grid.place(robotSprite, loc)
-                    console.log("Placed robot")
                 }
             }
         }
@@ -434,15 +428,12 @@ namespace robot {
                 // Check that required tiles are used in the tilemap
         if(assets.tile`coinTile`){
             const coinTile = assets.tile`coinTile`
-            let coinFound = checkForTilePresence(coinTile, "coinTile")
-            console.log("Coin tile found")
             for (let j = 0; j < tiles.tilemapRows(); j++) {
                 for (let k = 0; k < tiles.tilemapColumns(); k++) {
                     let loc = tiles.getTileLocation(k, j)
                     
                     if (tiles.tileIs(loc, coinTile)) {
                         addCoin(k, j)
-                        console.log("Placed coin")
                     }
                 }
             }
