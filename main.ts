@@ -410,29 +410,46 @@ namespace robot {
         console.log("Found tilemap in assets")
     
         // Check that required tiles are used in the tilemap
-        const coinTile = assets.tile`coinTile`
+        if(assets.tile`coinTile`){
+            const coinTile = assets.tile`coinTile`
+            let coinFound = checkForTilePresence(coinTile, "coinTile")
+            console.log("Coin tile found")
+        }
+        
         const startTile = assets.tile`startTile`
         const goalTile = assets.tile`goalTile`
     
         let startFound = checkForTilePresence(startTile, "startTile")
-        //let coinFound = checkForTilePresence(coinTile, "coinTile")
         let goalFound = checkForTilePresence(goalTile, "goalTile")
 
         // Optional: skip rest if critical tiles are missing
         if (!startFound || !goalFound) game.reset()
         console.log("Found startTile and goalTile in tilemap")
-        // Place robot and coins
+        // Place robot
         for (let j = 0; j < tiles.tilemapRows(); j++) {
             for (let k = 0; k < tiles.tilemapColumns(); k++) {
                 let loc = tiles.getTileLocation(k, j)
-                if (tiles.tileIs(loc, coinTile)) {
-                    addCoin(k, j)
-                }
+                
                 if (tiles.tileIs(loc, startTile)) {
                     grid.place(robotSprite, loc)
                 }
             }
         }
+
+        // Place coins only if the assets and tilemap have a coin
+        if(coinFound){
+            for (let j = 0; j < tiles.tilemapRows(); j++) {
+                for (let k = 0; k < tiles.tilemapColumns(); k++) {
+                    let loc = tiles.getTileLocation(k, j)
+                    
+                    if (tiles.tileIs(loc, coinTile)) {
+                        addCoin(k, j)
+                    }
+                }
+            }
+        }
+
+        
     }
 
     //%block
