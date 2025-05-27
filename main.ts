@@ -404,7 +404,7 @@ namespace robot {
             
         // Check tilemap loaded
         if (tiles.tilemapRows() === 0 || tiles.tilemapColumns() === 0) {
-            game.showLongText("⚠️ No tilemap found. Please add a tilemap to Assets.", DialogLayout.Full)
+            game.showLongText("⚠️ No tilemap found. Please set a current tilemap.", DialogLayout.Full)
             game.reset()
         }
         console.log("Found tilemap in assets")
